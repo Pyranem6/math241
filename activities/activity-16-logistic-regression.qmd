@@ -36,12 +36,19 @@ The variables we'll use in this analysis are
 Let's start by taking a look at our data. Create a density plot to investigate the relationship between `spam` and `exclaim_mess`. Additionally, calculate the mean number of exclamation points for both spam and non-spam emails.
 
 ```{r}
-# add code here
+ggplot(email, aes(x = spam, y = exclaim_mess)) + geom_density()
+
+mean_numbers <- email %>%
+  group_by(spam) %>%
+  summarize(mean(exclaim_mess))
+mean_numbers
 ```
 
 -   Would you expect longer or shorter emails to be spam? Create a density plot to investigate the relationship between `spam` and `mean_num_char`
 
-<!-- -->
+```{r}
+ggplot(email, aes(x = spam, y = mean_num_char)) + geom_density()
+```
 
 -   Would you expect emails with subject including "Re:" to be more or less likely to be spam?
 
